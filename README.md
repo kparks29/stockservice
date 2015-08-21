@@ -2,6 +2,10 @@ Requirements
 
 	*npm & noded installed
 
+Create a db.conf.json file
+
+	see example script
+
 Run the following commands in your terminal
 
 	chmod 777 utils/install.sh
