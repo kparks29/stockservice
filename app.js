@@ -2,7 +2,7 @@ var pg = require('pg'),
     dbConfig = require('./db.conf.json'),
     conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
     client = new pg.Client(conString)
-    migrations = require('./migrations.json').migrations;
+    migrations = require('./db/migrations.json').migrations;
 
 client.connect(function(err) {
   if(err) {
