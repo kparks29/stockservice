@@ -6,6 +6,7 @@
   "repository": "https://github.com/kparks29/stockservice.git",
   "dependencies": {
     "express": "^4.13.3",
-    "pg": "^4.4.1"
+    "pg-promise": "^1.9.0",
+    "promise": "^7.0.4"
   }
 }
