@@ -4,13 +4,9 @@
   "private": "true",
   "description": "The Stock Service application.",
   "repository": "https://github.com/kparks29/stockservice.git",
-  "config": {
-    "ghooks": {
-      "pre-commit": "node_modules/.bin/gulp lint",
-      "pre-push": "node_modules/.bin/gulp test"
-    }
-  },
   "dependencies": {
-    "pg": "^4.4.1"
+    "express": "^4.13.3",
+    "pg-promise": "^1.9.0",
+    "promise": "^7.0.4"
   }
 }
