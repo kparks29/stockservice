@@ -4,10 +4,26 @@ var pg = require('pg-promise')(),
     db = pg(conString),
     migrations = require('./db/migrations.json').migrations,
     userController = require('./users/userController'),
-    Promise = require('promise');
+    Promise = require('promise'),
+    express = require('express'),
+    bodyParser = require('body-parser');
+
+var app = express(),
+    server,
+    authRoutes = require('./auth');
+
+app.use(bodyParser.json());
+app.use('/', authRoutes);
 
 function errorHandler(error) {
   console.log('ERROR', error)
+}
+
+function launchServer() {
+  return app.listen(8081, function () {
+
+    console.log('Example app listening on port %s', server.address().port);
+  });
 }
 
 // migrate db
@@ -22,7 +38,9 @@ db.tx(function(){
 }).then(function(){
   // close the connection to db
   pg.end();
-  // load user module 
-  userController.test();
+  // seed db
+
+  // start server
+  server = launchServer();
 }, errorHandler);
 
