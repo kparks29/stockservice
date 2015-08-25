@@ -8,7 +8,7 @@
 		next();
 	});
 	router.post('/login', function(req, res) {
-		if (req.body.username && req.body.password) {
+		if (req.body.email && req.body.password) {
 			res.json({
 				headers: res.headers,
 				data: {
@@ -18,7 +18,7 @@
 		}
 		else {
 			res.status(401).json({
-				error: 'Wrong username or password'
+				error: 'Wrong email or password'
 			});
 		}
 	});

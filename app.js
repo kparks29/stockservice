@@ -22,7 +22,7 @@ function errorHandler(error) {
 function launchServer() {
   return app.listen(8081, function () {
 
-    console.log('Example app listening on port %s', server.address().port);
+    console.log('Stock Service listening on port %s', server.address().port);
   });
 }
 
