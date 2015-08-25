@@ -5,6 +5,9 @@
 
 	router.use(function timeLog(req, res, next) {
 		console.log('Request made at: ', Date.now());
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+		res.header('Access-Control-Allow-Headers', 'Content-Type');
 		next();
 	});
 	router.post('/login', function(req, res) {
