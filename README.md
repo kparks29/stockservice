@@ -1,6 +1,6 @@
 Requirements
 
-	*npm & noded installed
+	1) npm & noded installed (https://nodejs.org)
 
 Create a db.conf.json file
 

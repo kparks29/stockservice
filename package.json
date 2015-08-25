@@ -5,6 +5,7 @@
   "description": "The Stock Service application.",
   "repository": "https://github.com/kparks29/stockservice.git",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "pg-promise": "^1.9.0",
     "promise": "^7.0.4"
