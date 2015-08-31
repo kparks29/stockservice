@@ -6,8 +6,10 @@
   "repository": "https://github.com/kparks29/stockservice.git",
   "dependencies": {
     "body-parser": "^1.13.3",
+    "db-meta": "^0.4.1",
     "express": "^4.13.3",
     "pg-promise": "^1.9.0",
-    "promise": "^7.0.4"
+    "promise": "^7.0.4",
+    "uuid": "^2.0.1"
   }
 }

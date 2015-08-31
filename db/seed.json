@@ -1,0 +1,5 @@
+{
+    "users": [
+        "INSERT INTO user_account (user_account_uuid, email_address, phone_number, first_name, last_name) SELECT $1, 'test@test.com', 1231231231, 'test', 'user' WHERE NOT EXISTS (SELECT email_address FROM user_account WHERE email_address = 'test@test.com');"
+    ]
+}

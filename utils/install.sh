@@ -14,7 +14,7 @@ npm install
 echo "Checking if Postgres.app is installed"
 testPsql=$(psql --version)
 
-if [ "$testPsql" != "psql (PostgreSQL) 9.4.4" ]
+if [ "$testPsql" != "psql (PostgreSQL) 9.4.4.1" ]
 then
 	# get the download link
 	curl --progress-bar -v -o postgres.xml https://github.com/PostgresApp/PostgresApp/releases/download/9.4.4.1/Postgres-9.4.4.1.zip
@@ -27,11 +27,11 @@ then
 
 	# unzips the download and moves it to your applications folder
 	unzip postgres
-	# mv Postgres.app /Applications
+	mv Postgres.app /Applications
 	rm postgres.zip
 	rm -rf Postgres.app
 else
-	echo "PostgreSQL 9.4.4 already installed"
+	echo "PostgreSQL 9.4.4.1 already installed"
 fi
 
 #############################
@@ -45,7 +45,7 @@ password=\'$(grep "password" ../db.conf.json | cut -d " " -f 2 | cut -d "\"" -f 
 testUsername=$(psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='$username'")
 if [ "$testUsername" != 1 ]
 then
-	echo "CREATE USER $username WITH PASSWORD $password;" | psql
+	echo "CREATE USER $username WITH PASSWORD \'$password;\'" | psql
 else
 	echo "Username already exists"
 fi
