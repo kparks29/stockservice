@@ -15,7 +15,7 @@
 			res.json({
 				headers: res.headers,
 				data: {
-					authToken: 'test'
+					auth_token: 'test'
 				}
 			});
 		}

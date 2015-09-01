@@ -67,7 +67,7 @@
 						res.status(201).json({
 							headers: res.headers,
 							data: {
-								authToken: authToken
+								auth_token: authToken
 							}
 						});
 					}).catch(internalError);

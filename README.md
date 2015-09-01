@@ -38,3 +38,18 @@ If you have already install the backend successfully run these commands to launc
 
 
 Your server should now be running at http://localhost:8081
+
+
+#################################
+#			API			 		#
+#################################
+
+
+POST '/login'
+requires => email (soon to be email_address) and password
+returns => auth_token
+
+
+POST '/users/create'
+requires => email_address, password, first_name, last_name, phone_number(optional)
+returns => 201 (soon will add)
