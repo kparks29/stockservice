@@ -3,7 +3,7 @@
         "CREATE TABLE IF NOT EXISTS user_account (user_account_id bigserial, user_account_uuid uuid NOT NULL, email_address text NOT NULL, phone_number text, first_name text, last_name text NOT NULL, is_verified boolean NOT NULL DEFAULT false, created_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), modified_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), CONSTRAINT pk_user_account PRIMARY KEY(user_account_id));",
         "ALTER TABLE user_account DROP CONSTRAINT IF EXISTS email_address_key",
         "ALTER TABLE user_account ADD CONSTRAINT email_address_key UNIQUE (email_address);",
-        "ALTER TABLE user_account DROP COLUMN hashed_password IF EXISTS, DROP COLUMN hashed_password IF EXISTS;",
+        "ALTER TABLE user_account DROP COLUMN IF EXISTS hashed_password, DROP COLUMN IF EXISTS salt;",
         "ALTER TABLE user_account ADD COLUMN hashed_password varchar(60), ADD COLUMN salt varchar(60);"
     ]
 }

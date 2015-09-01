@@ -32,8 +32,8 @@ If you have already install the backend successfully run these commands to launc
 	git checkout dev
 	git pull origin dev
 	npm install
-	./db/migrate.js
-	./db/seed.js
+	node ./db/migrate.js
+	node ./db/seed.js
 	node app.js
 
 
