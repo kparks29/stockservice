@@ -10,10 +10,12 @@
 
     var app = express(),
         server,
-        authRoutes = require('./auth/auth');
+        authRoutes = require('./auth/auth'),
+        userRoutes = require('./users/users');
 
     app.use(bodyParser.json());
-    app.use('/', authRoutes);
+    // app.use('/', authRoutes);
+    app.use('/users', userRoutes);
 
     function launchServer() {
         return app.listen(8081, function () {

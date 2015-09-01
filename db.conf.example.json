@@ -1,5 +1,6 @@
 {
 	"username": "test",
 	"password": "test",
-	"db": "test"
+	"db": "test",
+	"secretKey": "test"
 }
