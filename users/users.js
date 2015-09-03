@@ -65,10 +65,7 @@
 					addUser(req.body).then(function (user) {
 						authToken = uuid.v4();
 						res.status(201).json({
-							headers: res.headers,
-							data: {
-								auth_token: authToken
-							}
+							auth_token: authToken
 						});
 					}).catch(internalError);
 				}

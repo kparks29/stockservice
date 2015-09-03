@@ -14,7 +14,7 @@
         userRoutes = require('./users/users');
 
     app.use(bodyParser.json());
-    // app.use('/', authRoutes);
+    app.use('/', authRoutes);
     app.use('/users', userRoutes);
 
     function launchServer() {
