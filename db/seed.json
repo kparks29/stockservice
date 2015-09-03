@@ -1,4 +1,5 @@
 {
+    "clearUsers": "DELETE FROM user_account;",
     "users": [
         "INSERT INTO user_account (email_address, hashed_password, salt, first_name, last_name, phone_number, user_account_uuid) SELECT 'test@test.com', $1, $2, 'John', 'Doe', 1231231231, $3 WHERE NOT EXISTS (SELECT email_address FROM user_account WHERE email_address = 'test@test.com');"
     ]
