@@ -4,6 +4,7 @@
 		router = express.Router(),
 		bcrypt = require('bcrypt'),
 		_ = require('lodash'),
+		jsonwebtoken = require('jsonwebtoken'),
 		queries = require('../db/queries.json'),
 		pg = require('pg-promise')(),
         dbConfig = require('../db.conf.json'),
@@ -12,6 +13,10 @@
 
 	function getUser (email_address) {
 		return db.one(queries.users.getByEmailAddress, [email_address]);
+	}
+
+	function getWebToken (user) {
+		return jsonwebtoken.sign(user, dbConfig.secretKey);
 	}
 
 	router.use(function timeLog(req, res, next) {
@@ -26,7 +31,7 @@
 			getUser(req.body.email_address).then(function (user) {
 				if (bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(200).json({
-						auth_token: 'test'
+						auth_token: getWebToken(user)
 					});
 				}
 				else {
