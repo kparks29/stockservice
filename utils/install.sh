@@ -62,6 +62,7 @@ fi
 
 echo "Granting privileges to user on database"
 echo "GRANT ALL PRIVILEGES ON DATABASE $db to $username;" | psql
+echo "ALTER ROLE $username WITH Superuser;" | psql
 
 
 #############################
