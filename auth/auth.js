@@ -16,7 +16,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, dbConfig.secretKey);
+		return jsonwebtoken.sign(user, dbConfig.secretKey, {expiresInSeconds: 100});
 	}
 
 	router.use(function timeLog(req, res, next) {
@@ -31,7 +31,7 @@
 			getUser(req.body.email_address).then(function (user) {
 				if (bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(200).json({
-						auth_token: getWebToken(user)
+						auth_token: getWebToken(_.pick(user, 'user_account_uuid'))
 					});
 				}
 				else {

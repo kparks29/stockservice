@@ -26,11 +26,11 @@
 		_.each(seedData.users, function (userQuery) {
 			var salt = bcrypt.genSaltSync(),
 				hash = bcrypt.hashSync('test', salt);
-			promises.push(self.any(userQuery, [hash, salt, uuid.v1()]));
+			promises.push(self.any(userQuery, [hash, salt, uuid.v4()]));
 		});
 		// load in stocks
 		_.each(seedData.stocks, function (stockQuery) {
-			promises.push(self.any(stockQuery, [uuid.v1()]));
+			promises.push(self.any(stockQuery, [uuid.v4()]));
 		});
 		// run once all promises are complete
 		return Promise.all(promises);

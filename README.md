@@ -23,6 +23,7 @@ Run the following commands in your terminal
 		- CREATE USER $username WITH PASSWORD '$password';
 		- CREATE DATABASE $db;
 		- GRANT ALL PRIVILEGES ON DATABASE $db to $username;
+		- ALTER ROLE $username WITH Superuser;
 
 		NOTE: $username, $passowrd, and $db are all variables that you defined in your db.conf.json. 
 		Make sure these are replaced with those values.
