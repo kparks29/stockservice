@@ -16,7 +16,7 @@
 		console.log('Request made at: ', Date.now());
 		res.header('Access-Control-Allow-Origin', '*');
 		res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-		res.header('Access-Control-Allow-Headers', 'Content-Type');
+		res.header('Access-Control-Allow-Headers', 'Content-Type', 'Auth-Token');
 		next();
 	});
 
@@ -33,7 +33,7 @@
 	router.get('/', function(req, res) {
 		var decoded;
 		try {
-			decoded = jsonWebToken.verify(req.headers['access-token'], dbConfig.secretKey);
+			decoded = jsonWebToken.verify(req.headers['Auth-Token'], dbConfig.secretKey);
 			getStocks().then(function (stocks) {
 				res.status(201).json({
 					stocks: stocks
