@@ -16,7 +16,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, dbConfig.secretKey, {expiresInSeconds: 100});
+		return jsonwebtoken.sign(user, dbConfig.secretKey, {expiresInSeconds: 3600});
 	}
 
 	router.use(function timeLog(req, res, next) {
