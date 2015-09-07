@@ -1,11 +1,5 @@
 (function() {
-    var pg = require('pg-promise')(),
-        dbConfig = require('./db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
-        db = pg(conString),
-        migrations = require('./db/migrations.json').migrations,
-        Promise = require('promise'),
-        express = require('express'),
+    var express = require('express'),
         bodyParser = require('body-parser');
 
     var app = express(),
