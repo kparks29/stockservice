@@ -5,11 +5,15 @@
   "description": "The Stock Service application.",
   "repository": "https://github.com/kparks29/stockservice.git",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
     "db-meta": "^0.4.1",
     "express": "^4.13.3",
+    "jsonwebtoken": "^5.0.5",
+    "lodash": "^3.10.1",
     "pg-promise": "^1.9.0",
     "promise": "^7.0.4",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "yql-node": "^0.1.5"
   }
 }

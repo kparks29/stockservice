@@ -45,7 +45,7 @@ password=\'$(grep "password" ../db.conf.json | cut -d " " -f 2 | cut -d "\"" -f 
 testUsername=$(psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='$username'")
 if [ "$testUsername" != 1 ]
 then
-	echo "CREATE USER $username WITH PASSWORD \'$password;\'" | psql
+	echo "CREATE USER $username WITH PASSWORD \'$password\';" | psql
 else
 	echo "Username already exists"
 fi
@@ -62,6 +62,7 @@ fi
 
 echo "Granting privileges to user on database"
 echo "GRANT ALL PRIVILEGES ON DATABASE $db to $username;" | psql
+echo "ALTER ROLE $username WITH Superuser;" | psql
 
 
 #############################

@@ -1,24 +1,21 @@
 (function() {
-    var pg = require('pg-promise')(),
-        dbConfig = require('./db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
-        db = pg(conString),
-        migrations = require('./db/migrations.json').migrations,
-        Promise = require('promise'),
-        express = require('express'),
+    var express = require('express'),
         bodyParser = require('body-parser');
 
     var app = express(),
         server,
-        authRoutes = require('./auth/auth');
+        authRoutes = require('./auth/auth'),
+        userRoutes = require('./users/users'),
+        stockRoutes = require('./stocks/stocks');
 
     app.use(bodyParser.json());
     app.use('/', authRoutes);
+    app.use('/users', userRoutes);
+    app.use('/stocks', stockRoutes);
 
     function launchServer() {
         return app.listen(8081, function () {
-
-        console.log('Stock Service listening on port %s', server.address().port);
+            console.log('Stock Service listening on port %s', server.address().port);
         });
     }
 

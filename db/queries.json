@@ -1,5 +1,9 @@
 {
-	"users" : {
-
+	"users": {
+		"add": "INSERT INTO user_account (email_address, hashed_password, salt, first_name, last_name, phone_number, user_account_uuid) VALUES ($1, $2, $3, $4, $5, $6, $7);",
+		"getByEmailAddress": "SELECT * FROM user_account WHERE email_address=$1;"
+	},
+	"stocks": {
+		"getAll": "SELECT stock_uuid, ticker_symbol, current_value, change, buy_status FROM stocks;"
 	}
 }
