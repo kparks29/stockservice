@@ -12,7 +12,7 @@
         db = pg(conString);
 
 	function getUser (email_address) {
-		return db.one(queries.users.getByEmailAddress, [email_address]);
+		return db.any(queries.users.getByEmailAddress, [email_address]);
 	}
 
 	function getWebToken (user) {
@@ -41,7 +41,7 @@
 				}
 			}).catch(function (error) {
 				res.status(500).json({
-					error: 'Internal Server Error'
+					error: error
 				});
 			});
 			
