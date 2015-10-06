@@ -8,7 +8,7 @@
 		queries = require('../db/queries.json'),
 		pg = require('pg-promise')(),
         dbConfig = require('../db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
         db = pg(conString);
 
 	function getUser (email_address) {
@@ -16,7 +16,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, dbConfig.secretKey, {expiresInSeconds: 3600});
+		return jsonwebtoken.sign(user, process.env.SECRET_KEY || dbConfig.secretKey, {expiresInSeconds: 3600});
 	}
 
 	router.use(function timeLog(req, res, next) {

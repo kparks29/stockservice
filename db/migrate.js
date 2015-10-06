@@ -3,7 +3,7 @@
 
     var pg = require('pg-promise')(),
         dbConfig = require('../db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
         db = pg(conString),
         migrations = require('./migrations.json').migrations,
         Promise = require('promise');

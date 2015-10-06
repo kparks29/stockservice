@@ -9,7 +9,7 @@
 		router = express.Router(),
 		pg = require('pg-promise')(),
         dbConfig = require('../db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
         db = pg(conString);
 
 	router.use(function timeLog(req, res, next) {
