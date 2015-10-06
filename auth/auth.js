@@ -16,7 +16,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, process.env.SECRET_KEY || dbConfig.secretKey, {expiresInSeconds: 3600});
+		return jsonwebtoken.sign(user, process.env.SECRET_ || dbConfig.secretKey, {expiresInSeconds: 3600});
 	}
 
 	router.use(function timeLog(req, res, next) {
@@ -41,7 +41,7 @@
 				}
 			}).catch(function (error) {
 				res.status(500).json({
-					error: 'Internal Server Error'
+					error: 'Internal Server Error: ' + error
 				});
 			});
 			
