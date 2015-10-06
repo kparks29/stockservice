@@ -3,8 +3,7 @@
 
 	var uuid = require('uuid'),
 		pg = require('pg-promise')(),
-	    dbConfig = require('../db.conf.json'),
-	    conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+	    conString = process.env.DATABASE_URL || 'postgres://stockuser:no7!st@localhost/stockservice',
 	    db = pg(conString),
 	    seedData = require('./seed.json'),
 	    Promise = require('promise'),

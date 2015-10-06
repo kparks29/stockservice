@@ -7,17 +7,15 @@
 		jsonwebtoken = require('jsonwebtoken'),
 		queries = require('../db/queries.json'),
 		pg = require('pg-promise')(),
-        dbConfig = require('../db.conf.json'),
-        conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://stockuser:no7!st@localhost/stockservice',
         db = pg(conString);
 
 	function getUser (email_address) {
-		console.log(email_address, queries.users.getByEmailAddress)
-		return db.any(queries.users.getByEmailAddress, [email_address]);
+		return db.one(queries.users.getByEmailAddress, [email_address]);
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, process.env.SECRET_ || dbConfig.secretKey, {expiresInSeconds: 3600});
+		return jsonwebtoken.sign(user, process.env.SECRET_ || 'l45ql8y4iik7is45fij5', {expiresInSeconds: 3600});
 	}
 
 	router.use(function timeLog(req, res, next) {
@@ -30,6 +28,7 @@
 	router.post('/login', function(req, res) {
 		if (req.body.email_address && req.body.password) {
 			getUser(req.body.email_address).then(function (user) {
+				console.log('password & hashed_password', req.body.password, user)
 				if (bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(200).json({
 						auth_token: getWebToken(_.pick(user, 'user_account_uuid'))

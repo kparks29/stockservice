@@ -8,8 +8,7 @@
 		queries = require('../db/queries.json'),
 		router = express.Router(),
 		pg = require('pg-promise')(),
-        dbConfig = require('../db.conf.json'),
-        conString = process.env.DATABASE_URL || 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://stockuser:no7!st@localhost/stockservice',
         db = pg(conString),
         Promise = require('promise'),
         yql = require('yql');
@@ -63,7 +62,7 @@
 
 	router.get('/', function(req, res) {
 		try {
-			var decoded = jsonWebToken.verify(req.headers['auth-token'], process.env.SECRET_KEY || dbConfig.secretKey);
+			var decoded = jsonWebToken.verify(req.headers['auth-token'], process.env.SECRET_KEY || 'l45ql8y4iik7is45fij5');
 			getStocks().then(function (stocks) {
 				res.status(201).json({
 					stocks: stocks
@@ -79,7 +78,7 @@
 
 	router.post('/', function(req, res) {
 		try {
-			var decoded = jsonWebToken.verify(req.headers['auth-token'], process.env.SECRET_KEY || dbConfig.secretKey);
+			var decoded = jsonWebToken.verify(req.headers['auth-token'], process.env.SECRET_KEY || 'l45ql8y4iik7is45fij5');
 			getStockFromServer(stockTickers).then(function (stocks) {
 				res.status(201).json({
 					stocks: stocks
