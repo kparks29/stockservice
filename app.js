@@ -14,7 +14,7 @@
     app.use('/stocks', stockRoutes);
 
     function launchServer() {
-        return app.listen(8081, function () {
+        return app.listen(process.env.PORT || 8081, function () {
             console.log('Stock Service listening on port %s', server.address().port);
         });
     }
