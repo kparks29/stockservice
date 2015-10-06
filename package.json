@@ -14,6 +14,7 @@
     "pg-promise": "^1.9.0",
     "promise": "^7.0.4",
     "uuid": "^2.0.1",
-    "yql-node": "^0.1.5"
-  }
+    "yql": "^1.0.2"
+  },
+  "start": "app.js"
 }
