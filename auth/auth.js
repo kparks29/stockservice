@@ -12,6 +12,7 @@
         db = pg(conString);
 
 	function getUser (email_address) {
+		console.log(email_address, queries.users.getByEmailAddress)
 		return db.one(queries.users.getByEmailAddress, [email_address]);
 	}
 
