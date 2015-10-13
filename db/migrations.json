@@ -5,6 +5,8 @@
         "ALTER TABLE user_account ADD CONSTRAINT email_address_key UNIQUE (email_address);",
         "ALTER TABLE user_account DROP COLUMN IF EXISTS hashed_password, DROP COLUMN IF EXISTS salt;",
         "ALTER TABLE user_account ADD COLUMN hashed_password varchar(60), ADD COLUMN salt varchar(60);",
-        "CREATE TABLE IF NOT EXISTS stocks (stock_id bigserial, stock_uuid uuid NOT NULL, ticker_symbol text NOT NULL, current_value decimal, change decimal, buy_status text, created_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), modified_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), CONSTRAINT pk_stock PRIMARY KEY(stock_id), CONSTRAINT unique_ticker_symbol UNIQUE (ticker_symbol));"
+        "CREATE TABLE IF NOT EXISTS stocks (stock_id bigserial, stock_uuid uuid NOT NULL, ticker_symbol text NOT NULL, current_value decimal, change decimal, buy_status text, created_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), modified_on_ts timestamp NOT NULL DEFAULT (now() at time zone 'utc'), CONSTRAINT pk_stock PRIMARY KEY(stock_id), CONSTRAINT unique_ticker_symbol UNIQUE (ticker_symbol));",
+        "CREATE TABLE IF NOT EXISTS stock_result (id bigserial, rank int NOT NULL, ticker_symbol text NOT NULL, name text, goal text, value decimal, created_on timestamp NOT NULL DEFAULT (now() at time zone 'utc'));",
+        "CREATE TABLE IF NOT EXISTS raw_stock (id bigserial, ticker_symbol text, average_daily_volume decimal, change decimal, today_low decimal, today_high decimal, year_low decimal, year_high decimal, market_capitalization text, last_trade_price_only decimal, days_range text, name text, volume int, stock_exchange text, created_on timestamp NOT NULL DEFAULT (now() at time zone 'utc'));"
     ]
 }

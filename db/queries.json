@@ -4,6 +4,13 @@
 		"getByEmailAddress": "SELECT * FROM user_account WHERE email_address=$1;"
 	},
 	"stocks": {
-		"getAll": "SELECT stock_uuid, ticker_symbol, current_value, change, buy_status FROM stocks;"
+		"getAll": "SELECT ticker_symbol, current_value, change, buy_status FROM stocks;"
+	},
+	"stock_result": {
+		"add": "INSERT INTO stock_result (rank, ticker_symbol, name, goal, value) VALUES ($1, $2, $3, $4, $5);",
+		"get": "SELECT s1.rank, s1.name, s1.goal, s1.value FROM stock_result AS s1 INNER JOIN (SELECT rank, MAX(created_on) as max_date FROM stock_result GROUP BY rank) s2 on s1.rank = s2.rank and s1.created_on = s2.max_date;"
+	},
+	"raw_stock": {
+		"add": "INSERT INTO raw_stock (ticker_symbol, average_daily_volume, change, today_low, today_high, year_low, year_high, market_capitalization, last_trade_price_only, days_range, name, volume, stock_exchange) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);"
 	}
 }

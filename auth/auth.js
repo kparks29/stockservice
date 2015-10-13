@@ -25,10 +25,10 @@
 		res.header('Access-Control-Allow-Headers', 'Content-Type, Auth-Token');
 		next();
 	});
-	router.post('/login', function(req, res) {
+
+	function login (req, res) {
 		if (req.body.email_address && req.body.password) {
 			getUser(req.body.email_address).then(function (user) {
-				console.log('password & hashed_password', req.body.password, user)
 				if (bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(200).json({
 						auth_token: getWebToken(_.pick(user, 'user_account_uuid'))
@@ -51,7 +51,10 @@
 				error: 'Missing Email or Password'
 			});
 		}
-	});
+	}
+
+
+	router.post('/login', login);
 
 	module.exports = router;
 
