@@ -15,7 +15,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, process.env.SECRET_ || 'l45ql8y4iik7is45fij5', {expiresInSeconds: 3600});
+		return jsonwebtoken.sign(user, process.env.SECRET_ || 'l45ql8y4iik7is45fij5', {expiresInSeconds: 360000});
 	}
 
 	router.use(function timeLog(req, res, next) {
