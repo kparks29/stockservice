@@ -7,8 +7,7 @@
 		jsonwebtoken = require('jsonwebtoken'),
 		queries = require('../db/queries.json'),
 		pg = require('pg-promise')(),
-        dbConfig = require('../db.conf.json'),
-        conString = 'postgres://' + dbConfig.username + ':' + dbConfig.password + '@localhost/' + dbConfig.db + '',
+        conString = process.env.DATABASE_URL || 'postgres://stockuser:no7!st@localhost/stockservice',
         db = pg(conString);
 
 	function getUser (email_address) {
@@ -16,7 +15,7 @@
 	}
 
 	function getWebToken (user) {
-		return jsonwebtoken.sign(user, dbConfig.secretKey, {expiresInSeconds: 3600});
+		return jsonwebtoken.sign(user, process.env.SECRET_ || 'l45ql8y4iik7is45fij5', {expiresInSeconds: 3600});
 	}
 
 	router.use(function timeLog(req, res, next) {
@@ -26,7 +25,8 @@
 		res.header('Access-Control-Allow-Headers', 'Content-Type, Auth-Token');
 		next();
 	});
-	router.post('/login', function(req, res) {
+
+	function login (req, res) {
 		if (req.body.email_address && req.body.password) {
 			getUser(req.body.email_address).then(function (user) {
 				if (bcrypt.compareSync(req.body.password, user.hashed_password)) {
@@ -41,7 +41,7 @@
 				}
 			}).catch(function (error) {
 				res.status(500).json({
-					error: error
+					error: 'Internal Server Error: ' + error
 				});
 			});
 			
@@ -51,7 +51,10 @@
 				error: 'Missing Email or Password'
 			});
 		}
-	});
+	}
+
+
+	router.post('/login', login);
 
 	module.exports = router;
 
